@@ -1,0 +1,13 @@
+--- #manifest 
+Kind: pod 
+Apiversion: v1 
+Metadata: 
+ - Name: testpod 
+   Spec: 
+Container:  
+  - Name: c00 
+    Image: ubuntu 
+    Command: echo "hatim loha" 
+    Restart policy: never 
+
+ 
