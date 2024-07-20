@@ -1,4 +1,3 @@
-```python
 apiVersion: v1
 kind: Pod
 metadata:
@@ -11,4 +10,4 @@ spec:
   - name: my-config
     configMap:
       name: my-configmap
-```
+
