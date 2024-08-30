@@ -65,6 +65,63 @@ spec:
       port: 80
       targetPort: 80
 ```
+### A. LoadBalancer
+
+A LoadBalancer service exposes the application to external traffic by provisioning a load balancer from the cloud provider, which distributes incoming traffic to the service's Pods. This type of service is typically used in cloud environments where external load balancers are supported.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-loadbalancer-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80          # The port that the service exposes
+      targetPort: 80    # The port on the Pods that the service forwards to
+```
+
+### B. ClusterIP
+
+A ClusterIP service exposes the application internally within the cluster. It provides a stable IP address for accessing the service from other Pods within the same cluster. This is the default type of service if none is specified.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-clusterip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80          # The port that the service exposes
+      targetPort: 80    # The port on the Pods that the service forwards to
+```
+
+### C. NodePort
+
+A NodePort service exposes the application on a static port on each Node's IP address. This type of service allows external access to the application by connecting to any Node's IP address and the NodePort. It is useful for development and testing scenarios.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nodeport-service
+spec:
+  type: NodePort
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80          # The port that the service exposes
+      targetPort: 80    # The port on the Pods that the service forwards to
+      nodePort: 30007    # The port on each Node where the service is exposed
+```
 
 ## 4. ConfigMap Manifest
 
